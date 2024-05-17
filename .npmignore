@@ -1,0 +1,5 @@
+# Ignore everything
+/*
+# Allow src and dist directories
+!/src
+!/dist
