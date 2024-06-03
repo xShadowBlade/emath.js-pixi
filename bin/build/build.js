@@ -10,25 +10,12 @@ const { umdWrapper } = require("./umdPlugin.js");
 const fs = require("fs/promises");
 const packageJson = require("../../package.json");
 
-// const externalIntFiles = [
-//     "./src/index.ts",
-//     "./src/hookMain.ts",
-
-//     // "./src/classes/*",
-//     "./src/classes/attribute.ts",
-//     "./src/classes/boost.ts",
-//     "./src/classes/currency.ts",
-//     "./src/classes/grid.ts",
-
-//     // "./src/E/*",
-//     "./src/E/e.ts",
-//     "./src/E/eMain.ts",
-//     "./src/E/lru-cache.ts",
-// ];
-
 const replacePlugin = replace({
     // "process.env.NODE_ENV": JSON.stringify("production"),
     "PKG_VERSION": JSON.stringify(packageJson.version),
+    "emath.js": "emath.js/ts",
+    "emath.js/game": "emath.js/ts/game",
+    "emath.js/presets": "emath.js/ts/presets",
 });
 
 /**
@@ -38,13 +25,13 @@ const replacePlugin = replace({
 const dev = {
     format: "umd",
     plugins: [umdWrapper(), replacePlugin],
-    external: ["reflect-metadata", "class-transformer"],
+    external: ["reflect-metadata", "class-transformer", "emath.js"],
 };
 
 const devEsm = {
     format: "esm",
     plugins: [replacePlugin],
-    external: ["reflect-metadata", "class-transformer"],
+    external: ["reflect-metadata", "class-transformer", "emath.js"],
 };
 
 const min = {

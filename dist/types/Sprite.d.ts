@@ -1,14 +1,12 @@
 /**
- * @file js/PIXI/sprite.js
- * @description
- * This JavaScript file defines the `Game.classes.sprite` class, which represents a game sprite
+ * @file This JavaScript file defines the `Game.classes.sprite` class, which represents a game sprite
  * created from a PIXI.Sprite. It provides functionality for managing sprite properties, collision
  * detection, and rendering offset by the camera.
  */
-import Intersects, { Shape, Rectangle, Polygon, Circle } from "./pixi-intersects.js";
+import { Shape, Rectangle, Polygon, Circle } from "yy-intersects";
 import type { PixiGame } from "./PixiGame.js";
 import type { Sprite, Graphics } from "pixi.js";
-type CollisionShapeType = Exclude<keyof typeof Intersects, "Shape">;
+type CollisionShapeType = "Circle" | "Polygon" | "Rectangle" | "Shape" | "Line";
 /**
  * Represents a game sprite
  */

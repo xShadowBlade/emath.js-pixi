@@ -5,8 +5,7 @@ import { GameSprite, CollisionShapeType } from "./Sprite";
 import { Game, gameDefaultConfig, ConfigManager, KeyManager, EventManager } from "emath.js/game";
 import type { GameConfigOptions } from "emath.js/game";
 
-import type { Graphics, Sprite } from "pixi.js";
-import type { Application } from "pixi.js";
+import type { Graphics, Sprite, Application } from "pixi.js";
 
 // import { loadPIXI } from "./loadPIXI";
 // const PIXI = loadPIXI();
@@ -95,11 +94,11 @@ class PixiGame extends Game {
         };
         this.keyManager = new KeyManager({
             autoAddInterval: true,
-            pixiApp: this.PIXI.app,
+            // pixiApp: this.PIXI.app,
         });
         this.eventManager = new EventManager({
             autoAddInterval: true,
-            pixiApp: this.PIXI.app,
+            // pixiApp: this.PIXI.app,
         });
     }
 

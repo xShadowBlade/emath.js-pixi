@@ -1,7 +1,5 @@
 /**
- * @file js/PIXI/sprite.js
- * @description
- * This JavaScript file defines the `Game.classes.sprite` class, which represents a game sprite
+ * @file This JavaScript file defines the `Game.classes.sprite` class, which represents a game sprite
  * created from a PIXI.Sprite. It provides functionality for managing sprite properties, collision
  * detection, and rendering offset by the camera.
  */
@@ -9,11 +7,12 @@
 // import React, { useEffect } from "react";
 // import { Sprite as PixiSprite } from "@pixi/react";
 // import { loadPIXI } from "./loadPIXI.js";
-import Intersects, { Shape, Rectangle, Polygon, Circle } from "./pixi-intersects.js";
+// @ts-expect-error - No types available for this package
+import Intersects, { Shape, Rectangle, Polygon, Circle } from "yy-intersects";
 import type { PixiGame } from "./PixiGame.js";
 import type { Sprite, Graphics } from "pixi.js";
 
-type CollisionShapeType = Exclude<keyof typeof Intersects, "Shape">;
+type CollisionShapeType = "Circle" | "Polygon" | "Rectangle" | "Shape" | "Line";
 
 /**
  * Represents a game sprite
@@ -21,12 +20,16 @@ type CollisionShapeType = Exclude<keyof typeof Intersects, "Shape">;
 class GameSprite {
     /** The pixi sprite */
     public sprite: Sprite | Graphics;
+
     /** The x position of the sprite */
     public x: number;
+
     /** The y position of the sprite */
     public y: number;
+
     /** The type of collision shape to use for the sprite */
     public collisionShape: CollisionShapeType;
+    
     /** The collision shape of the sprite */
     protected intersects: Shape | Circle | Polygon | Rectangle;
 
@@ -47,7 +50,6 @@ class GameSprite {
         this.x = this.sprite.x; // absolute position
         this.y = this.sprite.y;
         this.collisionShape = collisionShape;
-        // @ts-expect-error - collisionShape is a string, but we want to use it as a type
         this.intersects = new Intersects[this.collisionShape](this.sprite);
 
         // Offset by camera
